@@ -1,0 +1,22 @@
+<h2>Your Recipies</h2>
+<table border="9">
+  <tr>
+    <th>Recipe</th>
+    <th>Ingridents</th>
+    <th>Quantity</th>
+    <th>Instrctions</th>
+  </tr>
+  <tr *ngFor="let recipe of userRecipeObj; let i = index" >
+    <td (click)="selectRecipe(userRecipeName[i])" class="{{userRecipeName[i] == selectedRecipe? 'select':'rname'}}">{{userRecipeName[i]}}</td>
+    <td><ul><li *ngFor="let ing of recipe.INGRIDENTS" (click) = "selectIng(ing,i)" class="{{ing.name == selectedIng? 'ingselect':'iname'}} out">{{ing.name}}</li></ul></td>
+    <td><ul><li *ngFor="let ing of recipe.INGRIDENTS" (click) = "selectQuantity(ing)" class="{{ing.quantity == selectedQn? 'qnselect':'qname'}}">{{ing.quantity}}</li></ul></td>
+    <td (click)="selectInstruction(recipe.INSTRUCTIONS[0])" class="{{recipe.INSTRUCTIONS[0] == selectedInstruction? 'selectInst':'insname'}} ">{{recipe.INSTRUCTIONS[0]}}</td>
+  </tr>
+</table>
+<input type="text" class="field" placeholder="Add or Delete Recipe" [(ngModel)]="userRecipeNameInput">
+<input type="text" class="field" placeholder="Add or Delete Ingridents" [(ngModel)]="addOrDeleteIng">
+<input type="number" class="field" placeholder="Quantity of Ingridents" [(ngModel)] = "quantityIng">
+<textarea name="name" class="field" rows="8" cols="40" [(ngModel)]="inst"></textarea>
+<input type="button" class="add" value="New Recipe" (click)= "addRecipe()">
+<input type="button" class="delete" value="Delete Recipe" (click)= "deleteRecipe()">
+<input type="button" class="but" value="Edit Recipe" (click)= "editRecipe()"><br>

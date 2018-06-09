@@ -14,12 +14,16 @@ export class Fridge{
         for(let i of this.CONTENTS){
             if(i.name === item.name){
                 i.quantity+=item.quantity;
-                return;
             }
 
         }
 
-          this.CONTENTS.push(item);
+        for(let i of this.CONTENTS){
+          if(i.name !== item.name){
+        this.CONTENTS.push(item);
+      }
+      }
+
         }
 
     }
